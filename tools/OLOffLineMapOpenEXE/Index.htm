@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+<meta http-equiv="content-type" content="text/html; charset=gb2312">
+<title>地图定位</title>
+ <style>
+html, body, #map_canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+</style>
+
+
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBSGO1CeirsAslR_rDt2qByPG2NVN5ltoc&libraries=drawing&sensor=true"></script>
+
+<script type="text/javascript">
+var map;
+var rectsArray = new Array();
+
+function initialize() {
+    var myLatlng = new google.maps.LatLng(30.658601, 104.06485599999996);
+    var myOptions = {
+        zoom: 5,
+        center: myLatlng,
+        mapTypeControl: false,
+        panControl: true,
+        panControlOptions: {
+            position: google.maps.ControlPosition.TOP_RIGHT
+        },
+        streetViewControl: false,
+        zoomControl: true,
+        zoomControlOptions: {
+            style: google.maps.ZoomControlStyle.LARGE,
+            position: google.maps.ControlPosition.TOP_RIGHT
+        },
+
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+    map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+    google.maps.event.addListener(map, 'mousemove', function (event) {
+        if (event.latLng) {
+            document.getElementById("mouselongitude").value = event.latLng.lng().toFixed(6) + ";" + event.latLng.lat().toFixed(6);
+            document.getElementById("ZoomClass").value = map.getZoom();
+        }
+    });
+    google.maps.event.addListener(map, 'zoom_changed', function (event) {
+            document.getElementById("ZoomClass").value = map.getZoom();
+
+    });
+    var drawingManager = new google.maps.drawing.DrawingManager({
+        // drawingMode: google.maps.drawing.OverlayType.RECTANGLE,
+        drawingControl: true,
+        drawingControlOptions: {
+            position: google.maps.ControlPosition.LEFT_TOP,
+            drawingModes: [
+            //google.maps.drawing.OverlayType.CIRCLE,
+
+            google.maps.drawing.OverlayType.RECTANGLE]
+        },
+        circleOptions: {
+            fillColor: '#ffff00',
+            fillOpacity: 0.8,
+            clickable: false,
+            editable: true,
+            zIndex: 100
+        },
+        rectangleOptions: {
+            fillColor: "#FF0000",
+            strokeColor: "#FF0000",
+            fillOpacity: 0.35,
+            strokeOpacity: 0.8,
+            editable: true,
+            //draggable:true,
+            strokeWeight: 2,
+            zIndex: 100
+        }
+    });
+    drawingManager.setMap(map);
+
+    google.maps.event.addListener(drawingManager, 'overlaycomplete', function (event) {
+        rectsArray.push(event.overlay);
+        if (rectsArray.length > 1) {
+            for (var i = 0; i < rectsArray.length - 1; i++) {
+
+                rectsArray[i].setMap(null);
+                rectsArray.splice(i, 1);
+
+            }
+
+        }
+        drawingManager.setDrawingMode(null);
+        if (event.type == google.maps.drawing.OverlayType.CIRCLE) {
+            var radius = event.overlay.getBounds();
+        }
+        if (event.type == google.maps.drawing.OverlayType.RECTANGLE) {
+
+            var newShape = event.overlay;
+
+            document.getElementById("BoundsInfo").value = newShape.getBounds().getSouthWest().lng() + ";" + newShape.getBounds().getSouthWest().lat() + ";" + newShape.getBounds().getNorthEast().lng() + ";" + newShape.getBounds().getNorthEast().lat();
+            google.maps.event.addListener(newShape, "bounds_changed", function () {
+                document.getElementById("BoundsInfo").value = newShape.getBounds().getSouthWest().lng() + ";" + newShape.getBounds().getSouthWest().lat() + ";" + newShape.getBounds().getNorthEast().lng() + ";" + newShape.getBounds().getNorthEast().lat();
+            });
+
+        }
+    });
+
+
+
+}
+
+function ZoomInMap() {
+    var class1 = map.getZoom();
+    if (class1 < 21) {
+        class1 = class1 + 1;
+        map.setZoom(class1);
+    }
+}
+
+function ZoomOutMap() {
+    var class1 = map.getZoom();
+    if (class1 > 1) {
+        class1 = class1 - 1;
+        map.setZoom(class1);
+    }
+}
+
+
+function SetHybridMap() {
+    map.setMapTypeId(google.maps.MapTypeId.HYBRID);
+}
+
+function SetRoadMap() {
+    map.setMapTypeId(google.maps.MapTypeId.ROADMAP);
+}
+
+function SetSatelliteMap() {
+    map.setMapTypeId(google.maps.MapTypeId.SATELLITE);
+}
+
+function SetTerrainMap() {
+    map.setMapTypeId(google.maps.MapTypeId.TERRAIN);
+}
+function ShowTileGrid(str)
+{
+  if(str)
+    map.overlayMapTypes.insertAt(0, new CoordMapType(new google.maps.Size(256, 256)));
+  else
+   map.overlayMapTypes.removeAt(0);
+}
+function CoordMapType(tileSize) {
+    this.tileSize = tileSize;
+  }
+ 
+CoordMapType.prototype.getTile = function(coord, zoom, ownerDocument) {
+    var div = ownerDocument.createElement('DIV');
+    var ymax = 1 << zoom;
+		var y = ymax - coord.y - 1;
+
+    div.innerHTML = coord.x + "," + y + "," + zoom;
+    div.style.width = this.tileSize.width + 'px';
+    div.style.height = this.tileSize.height + 'px';
+    div.style.fontSize = '12';
+	div.style.fontWeight = 'bold';
+    div.style.borderStyle = 'solid';
+    div.style.borderWidth = '1px';
+    div.style.borderColor = '#AAAAAA';
+    return div;
+  };
+
+</script>
+</head>
+<body onload="initialize()">
+  <div id="map_canvas" >  
+  </div>
+  <input id="mouselongitude" name="mouselongitude"  type="text" style="visibility:hidden;"/>
+  <input id="ZoomClass" name="ZoomClass"  type="text" style="visibility:hidden;" />
+  <input id="BoundsInfo" name="BoundsInfo"  type="text" />
+</body>
+</html>

@@ -58,6 +58,7 @@ function initmap() {
     
     var loader = new L.Control.Loading();
     loader.onAdd(NZ.Map.map);
+    
 
 }
 
