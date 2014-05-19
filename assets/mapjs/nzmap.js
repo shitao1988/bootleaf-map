@@ -60,6 +60,66 @@ function initmap() {
     loader.onAdd(NZ.Map.map);
     
 
+       var measureControl = L.control.measure();
+       var drawnItems = new L.FeatureGroup();
+       
+       NZ.Map.map.addLayer(drawnItems);
+       drawnItems.bringToFront();
+     //  dynLayer.bringToBack();
+       var drawControl = new L.Control.Draw({
+           draw: {
+               position: 'topleft',
+               polygon: {
+                   title: '画一个面',
+                   allowIntersection: false,
+                   drawError: {
+                       color: '#b00b00',
+                       timeout: 1000
+                   },
+                   shapeOptions: {
+                       color: '#bada55'
+                   },
+                   showArea: true
+               },
+               polyline: {
+                   metric: false
+               },
+               circle: {
+                   shapeOptions: {
+                       color: '#662d91'
+                   }
+               }
+           },
+           edit: {
+               featureGroup: drawnItems
+           }
+       });
+
+       if ($('#cbxMeasure')[0].checked == true) {
+           NZ.Map.map.addControl(measureControl);
+       }
+       $('#cbxMeasure').change(function () {
+           if ($(this)[0].checked == true) {
+               NZ.Map.map.addControl(measureControl);
+              
+           } else {
+               NZ.Map.map.removeControl(measureControl);
+           }
+       });
+       if ($('#cbxMapping')[0].checked == true) {
+           NZ.Map.map.addControl(drawControl);
+       }
+       $("#cbxMapping").change(function () {
+
+           if ($(this)[0].checked == true) {
+               NZ.Map.map.addControl(drawControl);
+
+           } else {
+               NZ.Map.map.removeControl(drawControl);
+           }
+
+       });
+
 }
 
 

@@ -74,9 +74,16 @@
 	color: #bbb;
 }
 .leaflet-bar a, .leaflet-bar a:hover {
+/*    height: 20px;
+    width: 20px;*/
+}
+
+.leaflet-control-zoomslider a, .leaflet-control-zoomslider a:hover {
     height: 20px;
     width: 20px;
 }
+
+
 /* Touch */
 .leaflet-touch .leaflet-control-zoomslider-body {
 	background-position: 10px 0px;

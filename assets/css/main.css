@@ -1,119 +1,259 @@
-html, body, #map {
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
+html, body, #sidebar, #container
+{
+    height: 100%;
+    margin: 0px;
 }
-body {
-  padding-top: 50px;
+
+body
+{
+    padding-top: 50px;
 }
-input[type="radio"], input[type="checkbox"] {
-  margin: 0;
+
+label
+{
+    font-weight: normal;
 }
-#loading {
-  position: absolute;
-  width: 220px;
-  height: 19px;
-  top: 50%;
-  left: 50%;
-  margin: -10px 0 0 -110px;
-  z-index: 20001;
+
+.label
+{
+    color: #000;
+    font-size: 110%;
 }
-.leaflet-control-layers label {
-  font-weight: normal;
-  margin-bottom: 0px;
+
+.table
+{
+    margin-bottom: 0px;
 }
-.table {
-  margin-bottom: 0px;
+
+#map
+{
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    -webkit-box-shadow: 0 -1px 10px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0 -1px 10px rgba(0,0,0,0.5);
+    box-shadow: 0 -1px 10px rgba(0,0,0,0.5);
 }
-.navbar .navbar-brand {
-  font-weight: bold;
-  font-size: 25px;
-  color: white;
+
+#loading
+{
+    position: absolute;
+    width: 220px;
+    height: 19px;
+    top: 50%;
+    left: 50%;
+    margin: -10px 0 0 -110px;
+    z-index: 20001;
 }
-.navbar-collapse.in {
-  overflow-y: hidden;
+
+.navbar .navbar-brand
+{
+    font-weight: bold;
+    font-size: 22px;
+    color: white;
+    white-space: nowrap;
 }
-.typeahead {
-  background-color: #FFFFFF;
+
+.navbar-collapse.in
+{
+    overflow-y: hidden;
 }
-.tt-dropdown-menu {
-  background-color: #FFFFFF;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 4px 4px 4px 4px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-  margin-top: 4px;
-  padding: 4px 0;
-  width: 100%;
-  max-height: 300px;
-  overflow: auto;
+
+.tt-dropdown-menu
+{
+    overflow: auto;
 }
-.tt-suggestion {
-  font-size: 14px;
-  line-height: 20px;
-  padding: 3px 10px;
+
+.tt-hint, .tt-query
+{
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    border-radius: 4px;
 }
-.tt-suggestion.tt-cursor {
-  background-color: #0097CF;
-  color: #FFFFFF;
-  cursor: pointer;
+
+.typeahead-header
+{
+    margin: 0 5px 5px 5px;
+    padding: 3px 0;
+    border-bottom: 1px solid #ccc;
 }
-.tt-suggestion p {
-  margin: 0;
+
+.search-container
+{
+    width: 250px;
 }
-.tt-suggestion + .tt-suggestion {
-  border-top: 1px solid #ccc;
+
+#searchbox
+{
+    -webkit-border-top-left-radius: 4px;
+    -webkit-border-bottom-left-radius: 4px;
+    -moz-border-top-left-radius: 4px;
+    -moz-border-bottom-left-radius: 4px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
 }
-.typeahead-header {
-  margin: 0 5px 5px 5px;
-  padding: 3px 0;
-  border-bottom: 2px solid #333;
+
+.leaflet-popup-content
+{
+    margin-top: 20px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
 }
-.has-feedback .form-control-feedback {
-  position: absolute;
-  top: 0;
-  right: 0;
-  display: block;
-  width: 34px;
-  height: 34px;
-  line-height: 34px;
-  text-align: center;
+
+.leaflet-popup-content-wrapper
+{
+    border-radius: 5px;
 }
-.leaflet-popup-content {
-  margin-top: 5px;
-  margin-bottom: 5px;
-  margin-left: 5px;
-  margin-right: 5px;
+
+.panel-heading a:hover
+{
+    text-decoration: none;
 }
-.leaflet-popup-content-wrapper {
-  border-radius: 5px;
+
+@media (max-width: 992px)
+{
+    .navbar .navbar-brand
+    {
+        font-size: 18px;
+        float: left;
+    }
+
+    .search-container
+    {
+        width: 150px;
+    }
+
+    .leaflet-control-attribution
+    {
+        display: none;
+    }
 }
-.leaflet-sidebar {
-  z-index: 1020;
-}
-.leaflet-sidebar .close {
-  right: 0px;
-  top: 5px;
-  background: transparent;
-}
-@media (max-width: 992px) {
-  .navbar .navbar-brand {
-    font-size: 18px;
-  }
-}
-@media (max-width: 767px){
-  .url-break {
-    word-break: break-all;
-    word-break: break-word;
-    -webkit-hyphens: auto;
-    hyphens: auto;
-  }
+
+@media (max-width: 767px)
+{
+    .search-container
+    {
+        width: 100%;
+    }
 }
 /* Print Handling */
-@media print {
-  .navbar {
-    display: none !important;
+@media print
+{
+    .navbar, .toggle, #sidebar
+    {
+        display: none !important;
+    }
+}
+
+.input-control
+{
+    background-color: #FFFFFF;
+    background-image: none;
+    border: 1px solid #CCCCCC;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    color: #555555;
+    font-size: 14px;
+    height: 34px;
+    line-height: 1.42857;
+    padding: 6px 12px;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    vertical-align: middle;
+    margin: 5px;
+}
+
+.btn-group
+{
+    margin: 5px;
+}
+
+
+.loadingspinner {
+margin: 100px;
+    position: absolute;
+    text-align: center;
+}
+ 
+.loadingspinner > div {
+  width: 30px;
+  height: 30px;
+  background-color: #67CF22;
+ 
+  border-radius: 100%;
+  display: inline-block;
+  -webkit-animation: bouncedelay 1.4s infinite ease-in-out;
+  animation: bouncedelay 1.4s infinite ease-in-out;
+  /* Prevent first frame from flickering when animation starts */
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+ 
+.loadingspinner .bounce1 {
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+ 
+.loadingspinner .bounce2 {
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+ 
+@-webkit-keyframes bouncedelay {
+  0%, 80%, 100% { -webkit-transform: scale(0.0) }
+  40% { -webkit-transform: scale(1.0) }
+}
+ 
+@keyframes bouncedelay {
+  0%, 80%, 100% {
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 40% {
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
   }
-  .leaflet-control-container {
-    display: none !important;
-  }
+}
+.leaflet-zoom-animated {
+    z-index: 10
+}
+
+.leaflet-control-clegend {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    font: 14px/18px Arial,Helvetica,sans-serif;
+    padding: 6px;
+    position: absolute;
+    right: 60px;
+    z-index: 900;
+}
+
+.leaflet-popup-content {
+    min-width: 150px;
+}
+
+    .dropdown-menu > li > a {
+    padding: 3px 20px 10px;
+}
+        .radio, .checkbox {
+    display: block;
+     margin-left: -8px;
+    margin-top: -2px;
+            min-height: 20px;
+      margin-bottom: 0px;
+}
+        .h3 {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.leaflet-draw{
+ left: 20px;
+}
+
+.leaflet-control-zoom {
+    left: 20px;
 }

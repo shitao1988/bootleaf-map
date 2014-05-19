@@ -7,7 +7,7 @@
 */
 .has-leaflet-pan-control .leaflet-control-zoom {
 	position: relative;
-	left:24px;
+	left:20px;
 }
 /* 
    Make the zoomSlider control 
