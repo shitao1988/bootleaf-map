@@ -21,13 +21,13 @@ function initmap() {
                 }
             }, '-', {
                 text: '放大',
-                icon: '../assets/images/zoom-in.png',
+                icon: 'zoom-in.png',
                 callback: function (e) {
                     NZ.Map.map.zoomIn();
                 }
             }, {
                 text: '缩小',
-                icon: '../assets/images/zoom-out.png',
+                icon: 'zoom-out.png',
                 callback: function (e) {
                     NZ.Map.map.zoomOut();
                 }
