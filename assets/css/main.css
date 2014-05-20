@@ -257,3 +257,12 @@ margin: 100px;
 .leaflet-control-zoom {
     left: 20px;
 }
+
+.leaflet-control-styleeditor-interior {
+    height: 26px;
+    width: 26px;
+}
+
+.leaflet-control-styleeditor{
+  left: 20px;
+}

@@ -59,7 +59,11 @@ function initmap() {
     var loader = new L.Control.Loading();
     loader.onAdd(NZ.Map.map);
     
-
+  //Initialize the StyleEditor
+    var styleEditor = L.control.styleEditor({
+        position: "topleft"
+    });
+   
        var measureControl = L.control.measure();
        var drawnItems = new L.FeatureGroup();
        
@@ -94,6 +98,16 @@ function initmap() {
                featureGroup: drawnItems
            }
        });
+NZ.Map.map.on('draw:created', function (e) {
+            var type = e.layerType,
+                layer = e.layer;
+
+            if (type === 'marker') {
+                layer.bindPopup('A popup!');
+            }
+
+            drawnItems.addLayer(layer);
+        });
 
        if ($('#cbxMeasure')[0].checked == true) {
            NZ.Map.map.addControl(measureControl);
@@ -108,14 +122,17 @@ function initmap() {
        });
        if ($('#cbxMapping')[0].checked == true) {
            NZ.Map.map.addControl(drawControl);
+            NZ.Map.map.addControl(styleEditor);
        }
        $("#cbxMapping").change(function () {
 
            if ($(this)[0].checked == true) {
                NZ.Map.map.addControl(drawControl);
+                NZ.Map.map.addControl(styleEditor);
 
            } else {
                NZ.Map.map.removeControl(drawControl);
+                NZ.Map.map.removeControl(styleEditor);
            }
 
        });
