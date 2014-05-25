@@ -29,17 +29,21 @@ NZ.cfg.minilayer = L.tileLayer("imgmap/{z}/{x}/{y}.png", {
 });
 
 
+NZ.cfg.hospitallayer = new L.TileLayer.WMS("http://58.215.196.78:8088/geoserver/cite/wms", { 
+            maxZoom: 10, 
+            layers: "cite:hospital", 
+            format: "image/png", 
+            transparent: true 
+        }); 
 NZ.cfg.baseLayers = {
     "自有": NZ.cfg.chinalayer,
     "高德": NZ.cfg.gaodeilayer
 };
-/*NZ.cfg.overlayMaps = {
-    "维修点": NZ.cfg.wxdynLayer,
-    "销售商": NZ.cfg.xsdynLayer,
-    "供销社": NZ.cfg.gxdynLayer
+NZ.cfg.overlayMaps = {
+    "医院": NZ.cfg.hospitallayer
         
-};*/
-NZ.cfg.layerControl = L.control.layers(NZ.cfg.baseLayers);
+};
+NZ.cfg.layerControl = L.control.layers(NZ.cfg.baseLayers,NZ.cfg.overlayMaps);
 
 NZ.cfg.miniMap = new L.Control.MiniMap(NZ.cfg.minilayer, { toggleDisplay: true });
 

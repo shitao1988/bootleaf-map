@@ -39,7 +39,7 @@
       </div>
       <div class="navbar-collapse collapse">
   
-        <ul class="nav navbar-nav">
+        <ul class="nav navbar-nav" id="headernav">
            <li class="dropdown">
             <a id="toolsDrop" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-wrench" style="color: white"></i>&nbsp;&nbsp;工具箱 <b class="caret"></b></a>
             <ul class="dropdown-menu">
@@ -63,7 +63,7 @@
     </div>
 
     <div id="map"></div>
- 
+  <div id="NZ-minimize-tray"></div>
    <!--  <div id="loading">
       <div class="loading-indicator">
         <div class="progress progress-striped active">
@@ -75,6 +75,7 @@
    
 
     <script src="assets/js/jquery-1.11.0.min.js"></script>
+    <script src="assets/js/jquery-ui-1.9.1.custom.min.js"></script>
     <script src="assets/bootstrap-3.1.1/js/bootstrap.min.js"></script>
      <script type="text/javascript" src="assets/bootstrap-checkbox/js/bootstrap-checkbox.js"></script>
     <script src="assets/typeahead/typeahead.bundle.min.js"></script>
@@ -98,13 +99,23 @@
     <link href="assets/Leaflet.PanZoomBar/L.Control.Zoomslider.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="assets/Leaflet.PanZoomBar/L.Control.Zoomslider.js"></script>
     <script type="text/javascript" src="assets/Leaflet.PanZoomBar/L.Control.PanZoomBar.js"></script>
-    <script src="assets/mapjs/NZ.js"> </script>
+
+     <script src="assets/underscore.js"></script>
+     <script src="assets/mapjs/NZ.js"> </script>
+    <link rel="stylesheet" href="assets/mapjs/NZ/style.css">
+    <script src="assets/mapjs/NZ/config.js"></script>
+     <script src="assets/mapjs/NZ/core/Webapp.js"></script>
+    <script src="assets/mapjs/NZ/widgets/Widget.js"></script>
+     <script src="assets/mapjs/NZ/widgets/WidgetManager.js"></script>
+    
+    <script src="assets/mapjs/NZ/widgets/InfoWidget.js"></script>
     <script src="assets/mapjs/cfg.js"> </script>
     <script src="assets/mapjs/nzmap.js"> </script>
      <link rel="stylesheet" href="assets/css/main.css">
     <script>
       $('.headcheckbox').checkbox();
-    initmap();
+       var  webapp= new NZ.core.Webapp();
+       initmap();
 
 </script>
   </body>
