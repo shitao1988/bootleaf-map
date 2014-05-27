@@ -10,9 +10,7 @@
     <meta name="author" content="">
     <title>BootLeaf</title>
 
-    <link rel="stylesheet" href="assets/bootstrap-3.1.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/font-awesome-4.0.3/css/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/bootstrap-checkbox/css/bootstrap-checkbox.css">
+   
     <link rel="stylesheet" href="assets/leaflet-0.7.2/leaflet.css">
     <link rel="stylesheet" href="assets/leaflet-sidebar/L.Control.Sidebar.css">
    
@@ -28,59 +26,19 @@
   </head>
 
   <body>
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#">BootLeaf</a>
-      </div>
-      <div class="navbar-collapse collapse">
-  
-        <ul class="nav navbar-nav" id="headernav">
-           <li class="dropdown">
-            <a id="toolsDrop" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-wrench" style="color: white"></i>&nbsp;&nbsp;工具箱 <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-                <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" onclick="NZ.Map.map.setView([32, 116], 4)"><i class="fa fa-arrows-alt"></i>&nbsp;&nbsp;&nbsp;全图</a></li>
-                <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" onclick=" addLenged();"><i class="fa fa-list"></i>&nbsp;&nbsp;&nbsp;图例</a></li>
-                 <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" onclick=" addGeoSearch();"><i class="fa fa-search"></i>&nbsp;&nbsp;&nbsp;搜索地址</a></li>
-               
-                <li>
-                    <input id="cbxMeasure" type="checkbox" class="headcheckbox" data-label="测量">
-                </li>
-                <li>
-                    <input id="cbxMapping" type="checkbox" class="headcheckbox" data-label="描绘">
-                </li>
-                 
 
-            </ul>
-        </li>
-          
-        </ul>
-      </div><!--/.navbar-collapse -->
-    </div>
 
     <div id="map"></div>
-  <div id="NZ-minimize-tray"></div>
-   <!--  <div id="loading">
-      <div class="loading-indicator">
-        <div class="progress progress-striped active">
-          <div class="progress-bar progress-bar-info" style="width: 100%"></div>
-        </div>
-      </div>
-    </div> -->
+
+
 
    
 
     <script src="assets/js/jquery-1.11.0.min.js"></script>
     <script src="assets/js/jquery-ui-1.9.1.custom.min.js"></script>
-    <script src="assets/bootstrap-3.1.1/js/bootstrap.min.js"></script>
-     <script type="text/javascript" src="assets/bootstrap-checkbox/js/bootstrap-checkbox.js"></script>
-    <script src="assets/typeahead/typeahead.bundle.min.js"></script>
+  
     <script src="assets/leaflet-0.7.2/leaflet.js"></script>
-    <script src="assets/esri-leaflet/esri-leaflet.js"></script>
+  
     <script src="assets/Leaflet-MiniMap/Control.MiniMap.js"></script>
     <link rel="stylesheet" href="assets/Leaflet-MiniMap/Control.MiniMap.css" />
     <script src="assets/leaflet-draw/leaflet.draw.js"></script>
@@ -92,7 +50,7 @@
     <script type="text/javascript" src="assets/Leaflet.contextmenu/dist/leaflet.contextmenu.js"></script>
     <script src="assets/leaflet-measure/leaflet.measure.js"></script>
     <link rel="stylesheet" href="assets/leaflet-measure/leaflet.measure.css" />
-    <script type="text/javascript" src="assets/Leaflet.loading/Control.Loading.js"></script>
+
     <script src="assets/leaflet-sidebar/L.Control.Sidebar.js"></script>
     <link href="assets/Leaflet.PanZoomBar/L.Control.Pan.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="assets/Leaflet.PanZoomBar/L.Control.Pan.js"></script>
@@ -100,21 +58,14 @@
     <script type="text/javascript" src="assets/Leaflet.PanZoomBar/L.Control.Zoomslider.js"></script>
     <script type="text/javascript" src="assets/Leaflet.PanZoomBar/L.Control.PanZoomBar.js"></script>
 
-     <script src="assets/underscore.js"></script>
+
      <script src="assets/mapjs/NZ.js"> </script>
-    <link rel="stylesheet" href="assets/mapjs/NZ/style.css">
-    <script src="assets/mapjs/NZ/config.js"></script>
-     <script src="assets/mapjs/NZ/core/Webapp.js"></script>
-    <script src="assets/mapjs/NZ/widgets/Widget.js"></script>
-     <script src="assets/mapjs/NZ/widgets/WidgetManager.js"></script>
-    
-    <script src="assets/mapjs/NZ/widgets/InfoWidget.js"></script>
+
     <script src="assets/mapjs/cfg.js"> </script>
     <script src="assets/mapjs/nzmap.js"> </script>
      <link rel="stylesheet" href="assets/css/main.css">
     <script>
-      $('.headcheckbox').checkbox();
-       var  webapp= new NZ.core.Webapp();
+
        initmap();
 
 </script>

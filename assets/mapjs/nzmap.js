@@ -37,28 +37,6 @@ function initmap() {
     NZ.cfg.layerControl.addTo(NZ.Map.map);
     NZ.cfg.miniMap.addTo(NZ.Map.map);
 
-
-//loading控件   
-    L.Control.Loading.include({
-
-        onAdd: function (map) {
-            this._container = L.DomUtil.create('div', 'nz-loader', map._controlContainer);
-            map.on('baselayerchange', this._layerAdd, this);
-            this._addMapListeners(map);
-            this._map = map;
-        },
-
-        _showIndicator: function () {
-            L.DomUtil.addClass(this._map._container, 'nz-loading');
-        },
-
-        _hideIndicator: function () {
-            L.DomUtil.removeClass(this._map._container, 'nz-loading');
-        }
-
-    });
-    var loader = new L.Control.Loading();
-    loader.onAdd(NZ.Map.map);
     
 // 添加标绘
     var styleEditor = L.control.styleEditor({
@@ -109,35 +87,11 @@ function initmap() {
 
             drawnItems.addLayer(layer);
         });
-//工具栏
-       if ($('#cbxMeasure')[0].checked == true) {
-           NZ.Map.map.addControl(measureControl);
-       }
-       $('#cbxMeasure').change(function () {
-           if ($(this)[0].checked == true) {
-               NZ.Map.map.addControl(measureControl);
-              
-           } else {
-               NZ.Map.map.removeControl(measureControl);
-           }
-       });
+      //工具栏
+       NZ.Map.map.addControl(measureControl);
+       NZ.Map.map.addControl(drawControl);
+       NZ.Map.map.addControl(styleEditor);
 
-       if ($('#cbxMapping')[0].checked == true) {
-           NZ.Map.map.addControl(drawControl);
-            NZ.Map.map.addControl(styleEditor);
-       }
-       $("#cbxMapping").change(function () {
-
-           if ($(this)[0].checked == true) {
-               NZ.Map.map.addControl(drawControl);
-                NZ.Map.map.addControl(styleEditor);
-
-           } else {
-               NZ.Map.map.removeControl(drawControl);
-                NZ.Map.map.removeControl(styleEditor);
-           }
-
-       });
        //wfs查询
        var selectedFeature;
        NZ.Map.map.on('click', function(e) {
@@ -160,7 +114,7 @@ function initmap() {
 
         var customParams = {
             //bbox : map.getBounds().toBBoxString(),
-            cql_filter:'DWithin(the_geom, POINT(' + e.latlng.lng + ' ' + e.latlng.lat + '), 0.01, meters)'
+            cql_filter:'DWithin(the_geom, POINT(' + e.latlng.lng + ' ' + e.latlng.lat + '), 0.1, meters)'
         };
 
         var parameters = L.Util.extend(defaultParameters, customParams);
