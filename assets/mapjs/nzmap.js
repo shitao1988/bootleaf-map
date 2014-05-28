@@ -1,14 +1,14 @@
 ﻿
 NZ.namespace("NZ.Map");
 function initmap() {
+  //初始化map
     NZ.Map.map = L.map('map', {
-        PanZoomBar: true,
-        zoomControl: false,
-        contextmenu: true,
-        loadingControl: true,
+        PanZoomBar: true,       //加载导航条控件
+        zoomControl: false,    //禁用默认的zoom控件
         attributionControl:false,
-        contextmenuWidth: 140,
-        contextmenuItems: [
+        contextmenu: true,
+        contextmenuWidth: 140,  //右键菜单宽度
+        contextmenuItems: [    //右键菜单各项
              {
                 text: '显示坐标',
                 callback: function (e) {
@@ -38,13 +38,13 @@ function initmap() {
     NZ.cfg.miniMap.addTo(NZ.Map.map);
 
     
-// 添加标绘
+   // 添加标绘
     var styleEditor = L.control.styleEditor({
         position: "topleft"
     });
    
        var measureControl = L.control.measure();
-
+       // 标绘图层
        var drawnItems = new L.FeatureGroup();
        NZ.Map.map.addLayer(drawnItems);
        drawnItems.bringToFront();
@@ -77,6 +77,7 @@ function initmap() {
                featureGroup: drawnItems
            }
        });
+       //要素绘制后添加到地图
        NZ.Map.map.on('draw:created', function (e) {
             var type = e.layerType,
                 layer = e.layer;
@@ -94,13 +95,12 @@ function initmap() {
 
        //wfs查询
        var selectedFeature;
+       //监听地图点击事件
        NZ.Map.map.on('click', function(e) {
         if (selectedFeature) {
             NZ.Map.map.removeLayer(selectedFeature);
         };
-
-        
-        
+        //wfs服务的参数
         var defaultParameters = {
             service : 'WFS',
             version : '1.0.0',
@@ -119,9 +119,7 @@ function initmap() {
 
         var parameters = L.Util.extend(defaultParameters, customParams);
 
-
-        //console.log(url);
-
+        //跨域查询
         $.ajax({
             url : 'http://58.215.196.78:8088/geoserver/cite/ows' + L.Util.getParamString(parameters),
             dataType : 'jsonp',
@@ -192,12 +190,6 @@ function initmap() {
         });
     }
 
-function initlocmap() {
-    if (!NZ.Map.locmap) {
-        NZ.Map.locmap = L.map('locmap').setView([NZ.cfg.City.lat, NZ.cfg.City.lon], 16);
-    }
-    
-    NZ.cfg.chinalayer.addTo(NZ.Map.locmap);
-}
+
 
 

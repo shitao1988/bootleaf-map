@@ -7,6 +7,7 @@ NZ.cfg.City = {
     lat: 39.125,
     zoom: 5
 },
+//底图
 NZ.cfg.chinalayer = L.tileLayer("imgmap/{z}/{x}/{y}.png", {
     zIndex: 1
 });
@@ -24,17 +25,15 @@ NZ.cfg.mapabclayer = L.tileLayer('http://{s}.mapabc.com/mapabc/maptile?&x={x}&y=
     subdomains: ["emap1", "emap2", "emap3"],
     zIndex: 1
 });
-NZ.cfg.minilayer = L.tileLayer("imgmap/{z}/{x}/{y}.png", {
-    zIndex: 1
-});
 
-
+//加载geoserver的wms图层
 NZ.cfg.hospitallayer = new L.TileLayer.WMS("http://58.215.196.78:8088/geoserver/cite/wms", { 
             maxZoom: 10, 
             layers: "cite:hospital", 
             format: "image/png", 
             transparent: true 
         }); 
+
 NZ.cfg.baseLayers = {
     "自有": NZ.cfg.chinalayer,
     "高德": NZ.cfg.gaodeilayer
@@ -43,7 +42,12 @@ NZ.cfg.overlayMaps = {
     "医院": NZ.cfg.hospitallayer
         
 };
+//图层控件
 NZ.cfg.layerControl = L.control.layers(NZ.cfg.baseLayers,NZ.cfg.overlayMaps);
 
+//鹰眼地图
+NZ.cfg.minilayer = L.tileLayer("imgmap/{z}/{x}/{y}.png", {
+    zIndex: 1
+});
 NZ.cfg.miniMap = new L.Control.MiniMap(NZ.cfg.minilayer, { toggleDisplay: true });
 
